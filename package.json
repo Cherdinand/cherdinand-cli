@@ -1,0 +1,25 @@
+{
+  "name": "Cherdinand-Cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Cherdinand",
+  "dependencies": {
+    "commander": "^2.16.0"
+  },
+  "scripts": {
+    "dev": "node ./bin/index.js -i 33 -f 1.462",
+    "dev2": "node ./bin/index.js app"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  },
+  "bin": {
+    "c-cli": "./bin/index.js"
+  }
+}
