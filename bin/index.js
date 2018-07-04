@@ -2,24 +2,6 @@
 
 const program = require("commander");
 
-
-function range(val) {
-  return val.split('..').map(Number);
-}
-
-function list(val) {
-  return val.split(',');
-}
-
-function collect(val, memo) {
-  memo.push(val);
-  return memo;
-}
-
-function increaseVerbosity(v, total) {
-  return total + 1;
-}
-
 /*
 * program.option('short, long', description, callback, defaultValue)
 *
@@ -29,34 +11,26 @@ function increaseVerbosity(v, total) {
 * 第四个参数为默认值，当在命令行有传入相应的short option或long option时，此参数作为long option的默认值
 * */
 
+// https://aotu.io/notes/2016/08/09/command-line-development/index.html  命令行工具
+
+dev = () => {
+  console.log("开发模式");
+};
+
+prod = () => {
+  console.log("生产模式");
+};
+
 program
   .version('0.0.1')
-  .usage('[options] <file ...>')
-  .option('-i, --integer <n>', 'An integer argument', parseInt, 10)
-  .option('-f, --float <n>', 'A float argument', parseFloat, 1.2)
-  .option('-r, --range <a>..<b>', 'A range', range)
-  .option('-l, --list <items>', 'A list', list)
-  .option('-o, --optional [value]', 'An optional value')
-  .option('-c, --collect [value]', 'A repeatable value', collect, [])
-  .option('-v, --verbose', 'A value that can be increased', increaseVerbosity, 0)
-  .action(function(option){
-    console.log('option____________________', option);
-  })
-  .parse(process.argv);
+  .option('-d, --dev', 'development environment', dev)
+  .option('-p, --prod', 'product environment', prod)
 
-// console.log("_________",JSON.stringify(program,null,2))
+program.parse(process.argv);
 
+if(process.argv.length <= 2){
+  program.outputHelp()
+}
 
-console.log(' int: %j', program.integer);
-console.log(' float: %j', program.float);
-console.log(' optional: %j', program.optional);
-program.range = program.range || [];
-console.log(' range: %j..%j', program.range[0], program.range[1]);
-console.log(' list: %j', program.list);
-console.log(' collect: %j', program.collect);
-console.log(' verbosity: %j', program.verbose);
-console.log(' args: %j', program.args);
-
-
-console.log("___________________________")
-
+console.log('process.argv', process.argv);
+console.log('process.cwd()', process.cwd());

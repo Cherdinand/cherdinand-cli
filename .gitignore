@@ -1,0 +1,6 @@
+node_modules
+.git
+.idea
+yarn-error.log
+dist
+package-lock.json
